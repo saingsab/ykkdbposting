@@ -1,0 +1,47 @@
+version: "3.1"
+networks:
+  web:
+    external: true
+  internal:
+    external: false
+services:
+  # change to MSSQL Server
+  # db-testnet:
+  #   image: postgres
+  #   restart: always
+  #   volumes:
+  #     - ./dbs:/var/lib/postgresql/data
+  #   environment:
+  #     POSTGRES_USER: ${POSTGRES_USER}
+  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+  #   ports:
+  #     - 5432:5432
+  #   networks:
+  #     - internal
+  #     - web
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8088:8080
+    networks:
+      - web
+    # depends_on:
+    #   - db-testnet
+
+
+  # apiserver:
+  #   image: clojure
+  #   container_name: "api-testnet"
+  #   restart: always
+  #   depends_on:
+  #     - rpc-client
+  #   ports:
+  #     - 3001:3000
+  #   volumes:
+  #     - ./:/usr/src/myapp
+  #   networks:
+  #     - web
+  #     - internal
+  #   working_dir: /usr/src/myapp
+  #   command: sh -c "lein do clean, ring uberjar && java -jar target/server.jar"
