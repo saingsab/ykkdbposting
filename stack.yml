@@ -19,6 +19,18 @@ services:
   #   networks:
   #     - internal
   #     - web
+  mssql:
+    image: 'mcr.microsoft.com/mssql/server'
+    ports:
+        - '1433:1433'
+    environment:
+        - ACCEPT_EULA=Y
+        - SA_PASSWORD={$PASS}
+    volumes:
+        - './drive:/var/opt/mssql'
+    networks:
+      - web
+
   adminer:
     image: adminer
     restart: always
@@ -26,8 +38,8 @@ services:
       - 8088:8080
     networks:
       - web
-    # depends_on:
-    #   - db-testnet
+    depends_on:
+      - mssql
 
 
   # apiserver:

@@ -1,2 +1,4 @@
 /target
 .env
+stack.yml
+/drive
