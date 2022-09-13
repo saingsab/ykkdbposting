@@ -1,8 +1,12 @@
 [package]
 name = "ykkdbposting"
 version = "0.1.0"
+authors = ["Ayoung"]
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+#ENV Configuration file
+dotenv_codegen = "0.15.0"
+odbc-iter = "0.2.5"
