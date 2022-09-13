@@ -1,4 +1,5 @@
 // Use mode or craite for mssql connection
+mod conn;
 // start building SP
 // DB
 use serde_json;
@@ -9,6 +10,7 @@ use std::fs;
 #[macro_use]
 extern crate dotenv_codegen;
 fn main() {
+
     println!("init... calling env  ");
     println!("{}", dotenv!("MEANING_OF_LIFE"));
     println!("init... calling Configuration File  ");
@@ -16,5 +18,8 @@ fn main() {
     let data = fs::read_to_string(path).expect("Unable to read file");
     let res: serde_json::Value = serde_json::from_str(&data).expect("Unable to parse");
     println!("{}", res["address"]["city"]);
-    println!("Phone Number: {}", res["phones"][0])
+    println!("Phone Number: {}", res["phones"][0]);
+
+    // Calling from other mod;
+    conn::print_msg();
 }
