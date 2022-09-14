@@ -3,11 +3,11 @@ use tiberius::{Client, Config, AuthMethod};
 use tokio::net::TcpStream;
 use tokio_util::compat::TokioAsyncWriteCompatExt;
 
-use utils;
+use crate::utils;
+// mod logging;
 
-// #[macro_use]
+#[macro_use]
 // extern crate dotenv_codegen;
-// #[tokio::conn]
 async fn connect_db() -> anyhow::Result<()> {
     let mut config = Config::new();
 
@@ -27,13 +27,13 @@ async fn connect_db() -> anyhow::Result<()> {
     Ok(())
 }
 
-pub async fn conn() {
+pub async fn connect() {
     println!("Connecting to DB {}", dotenv!("SRVURL").to_string());
     connect_db().await;
 
     // ERROR Throw to file
     if let Err(_err) = connect_db().await {
-        utils::oplog(_err.to_string());
+        utils::oplog("\n ERROR: ".to_owned() + &_err.to_string()).await;
         println!("ERROR {}", _err.to_string());
     }
 } 
