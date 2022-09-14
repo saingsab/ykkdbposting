@@ -1,5 +1,6 @@
 // Use mode or craite for mssql connection
 mod conn;
+mod utils;
 // start building SP
 // DB
 use serde_json;
@@ -23,5 +24,7 @@ async fn main() {
     println!("{}", res["address"]["city"]);
     println!("Phone Number: {}", res["phones"][0]);
 
+    // try writing file
+    utils::oplog();
 
 }

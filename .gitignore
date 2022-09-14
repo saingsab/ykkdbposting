@@ -2,3 +2,4 @@
 .env
 stack.yml
 /drive
+/log/
