@@ -3,6 +3,8 @@ use tiberius::{Client, Config, AuthMethod};
 use tokio::net::TcpStream;
 use tokio_util::compat::TokioAsyncWriteCompatExt;
 
+use utils;
+
 // #[macro_use]
 // extern crate dotenv_codegen;
 // #[tokio::conn]
@@ -31,6 +33,7 @@ pub async fn conn() {
 
     // ERROR Throw to file
     if let Err(_err) = connect_db().await {
+        utils::oplog(_err.to_string());
         println!("ERROR {}", _err.to_string());
     }
 } 

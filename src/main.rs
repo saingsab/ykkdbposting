@@ -1,5 +1,5 @@
 // Use mode or craite for mssql connection
-mod conn;
+mod conn::conn;
 mod utils;
 // start building SP
 // DB
@@ -25,6 +25,6 @@ async fn main() {
     println!("Phone Number: {}", res["phones"][0]);
 
     // try writing file
-    utils::oplog();
+    utils::oplog("hi from main \n".to_string());
 
 }

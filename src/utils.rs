@@ -2,21 +2,18 @@
 use std::fs::OpenOptions;
 use std::io::Write;
 
-struct Msg {
-    error_msg: String,
-}
+// [x] syslog: loging any error occure when fail running the system.
+pub fn syslog(_msg: String) {
+    let mut file_ref = OpenOptions::new().append(true).open("log/sys.log").expect("Unable to open file");   
+    
+    file_ref.write_all(_msg.as_bytes()).expect("write failed");
+    println!("Log appended successfully");
+ }
 
-impl Msg {
-    fn new (error_msg: &string) -> Msg {
-        Msg {err_msg: err_msg.to_string()}
-    }
-}
-
-// [ ] syslog: loging any error occure when fail running the system.
-// [ ] oplog: loging any error occure when fail running the operation.
-pub fn oplog() {
+// [x] oplog: loging any error occure when fail running the operation.
+pub fn oplog(_msg: String) {
     let mut file_ref = OpenOptions::new().append(true).open("log/op.log").expect("Unable to open file");   
     
-    file_ref.write_all("ERROR : {}\n", err_msg.as_bytes()).expect("write failed");
+    file_ref.write_all(_msg.as_bytes()).expect("write failed");
     println!("Log appended successfully");
  }
