@@ -9,10 +9,13 @@ use std::fs;
 // For ENV
 #[macro_use]
 extern crate dotenv_codegen;
-fn main() {
+#[tokio::main]
+async fn main() {
+
+        // Calling from other mod;
+        conn::conn().await;
 
     println!("init... calling env  ");
-    println!("{}", dotenv!("MEANING_OF_LIFE"));
     println!("init... calling Configuration File  ");
     let path = "./storeconfiguration.json";
     let data = fs::read_to_string(path).expect("Unable to read file");
@@ -20,6 +23,5 @@ fn main() {
     println!("{}", res["address"]["city"]);
     println!("Phone Number: {}", res["phones"][0]);
 
-    // Calling from other mod;
-    conn::print_msg();
+
 }
