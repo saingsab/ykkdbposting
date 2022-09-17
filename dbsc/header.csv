@@ -1,0 +1,1 @@
+TransactionID	InvoiceID	ReceiptID	Date	Start Time	End Time	NumberOfCustomer	SubTotal	DiscountDollar	DiscountRiel	DiscountTypeID	VAT	Net	GrandTotal	PaymentDollar	PaymentRiel	ChangeDollar	ChangeRiel	PaymentMethodID	Cashier	StatusID	Comment	Currency	ExchangeRate
