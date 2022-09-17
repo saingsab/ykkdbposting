@@ -6,7 +6,7 @@ use tokio_util::compat::TokioAsyncWriteCompatExt;
 use crate::utils;
 // mod logging;
 
-#[macro_use]
+// #[macro_use]
 // extern crate dotenv_codegen;
 async fn connect_db() -> anyhow::Result<()> {
     let mut config = Config::new();
@@ -14,6 +14,7 @@ async fn connect_db() -> anyhow::Result<()> {
     config.host(dotenv!("SRVURL").to_string());
     config.port(dotenv!("SRVPORT").parse::<u16>().unwrap());
     config.authentication(AuthMethod::sql_server(dotenv!("SQLUSR").to_string(), dotenv!("SQLPASS").to_string()));
+    config.instance_name(dotenv!("INSTANCE").to_string());
     config.trust_cert(); // on production, it is not a good idea to do this
 
     let tcp = TcpStream::connect(config.get_addr()).await?;
@@ -28,7 +29,7 @@ async fn connect_db() -> anyhow::Result<()> {
 }
 
 pub async fn connect() {
-    println!("Connecting to DB {}", dotenv!("SRVURL").to_string());
+    // println!("Connecting to DB {}", dotenv!("SRVURL").to_string());
     connect_db().await;
 
     // ERROR Throw to file
