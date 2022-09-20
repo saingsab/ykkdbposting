@@ -19,3 +19,6 @@ odbc = "0.17.0"
 #JSON FILE 
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
+
+#CSV
+csv = "1"
