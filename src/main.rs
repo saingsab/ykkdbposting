@@ -11,7 +11,8 @@ use std::error::Error;
 use csv;
 use serde::Deserialize;
 
-mod csv_serde;
+mod csv_read_serde;
+mod csv_write_serde;
 
 #[derive(Debug, Deserialize)]
 struct Customer {
@@ -36,7 +37,10 @@ fn main() {
     // read_and_write("rows.csv", "rows-copy.csv").unwrap();
     // read_from_file("ayoung.csv").unwrap();
         // If an error occurs print error
-    if let Err(e) = csv_serde::read_from_file("./ayoung.csv") {
+    if let Err(e) = csv_read_serde::read_from_file("./ayoung.csv") {
+        eprintln!("{}", e);
+    }
+    if let Err(e) = csv_write_serde::write_to_file("./ayoung.csv") {
         eprintln!("{}", e);
     }
     // read_from_file
